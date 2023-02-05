@@ -1,0 +1,43 @@
+{% extends 'App/base.html' %}
+
+{% block contenidoQueCambia %}
+  
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{pantalones.titulo}}</h4></p>
+
+{% if pantalones.imagenPrenda %}
+    <p><img src="{{pantalones.imagenPrenda.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{pantalones.marca}}</p>
+<p>Descripción: {{pantalones.descripcion}}</p>
+<p>Fecha de publicacion: {{pantalones.fecha_publicacion}}</p>
+<p>Precio: {{pantalones.precio}}</p>
+<p>Telefono de Contacto: {{pantalones.contactoTLF}}</p>
+<p>Email de Contacto: {{pantalones.email_contacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios</h4>
+    <br>
+    <div class="container">
+    {% if not pantalones.comentarios.all %}
+        Aun no tiene comentarios esta publicacion
+    {% else %}
+        {% for comentario in pantalones.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' pantoles.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+
+{% endblock %}

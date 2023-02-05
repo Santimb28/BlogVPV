@@ -1,0 +1,29 @@
+{% extends 'App/base.html' %}
+
+{% block contenidoQueCambia %}
+  
+<br>
+<br>
+
+{% if user.id == pantalones.usuario.id %}
+<div class="container">
+
+    <h4>Editar PANTALONES</h4>
+    
+</div>
+
+<div class="container">
+    <div class="form-group">
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>    
+</div>
+{% else %}
+<div class="container">
+<h4>No puedes acceder a esta pagina</h4>
+</div>
+{% endif %}
+
+{% endblock %}

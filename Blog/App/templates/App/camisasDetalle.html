@@ -1,0 +1,43 @@
+{% extends 'App/base.html' %}
+
+{% block contenidoQueCambia %}
+  
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{camisas.titulo}}</h4></p>
+
+{% if camisas.imagenPrenda %}
+    <p><img src="{{camisas.imagenPrenda.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{camisas.marca}}</p>
+<p>Descripción: {{camisas.descripcion}}</p>
+<p>Fecha de publicacion: {{camisas.fecha_publicacion}}</p>
+<p>Precio: {{camisas.precio}}</p>
+<p>Telefono de Contacto: {{camisas.contactoTLF}}</p>
+<p>Email de Contacto: {{camisas.email_contacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios</h4>
+    <br>
+    <div class="container">
+    {% if not camisas.comentarios.all %}
+        Aun no tiene comentarios esta publicacion
+    {% else %}
+        {% for comentario in camisas.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' camisas.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+
+{% endblock %}

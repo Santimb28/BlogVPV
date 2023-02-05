@@ -1,0 +1,41 @@
+{% extends 'App/base.html' %}
+
+{% block contenidoQueCambia %}
+  
+<br>
+<br>
+
+
+
+
+
+<div class="container text-center">
+    <h1>Pulseras</h1>
+</div>
+
+<br>
+
+<div class="container text-center">
+    <div class="row">
+            {% for pulseras in pulserass %}
+            <div class="col-sm-6 align-items-center">
+                <div class="card-body">
+                <img src="{{pulseras.imagenPrenda.url}}" class="" width="100px">
+                {{pulseras.titulo}}
+                <a href="{% url 'pulseras' pulseras.id %}"><i class="bi bi-eye"></i></a>
+                {% if user.id == pulseras.usuario.id %}
+                <a href="{% url 'pulseras_editar' pulseras.id %}"><i class="bi bi-pencil-fill"></i></a>
+                <a href="{% url 'pulseras_eliminar' pulseras.id %}"><i class="bi bi-trash text-danger"></i></a>
+                <br>
+                <br>
+                <br>
+                <br>
+                {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'App/base.html' %}
+
+{% block contenidoQueCambia %}
+  
+<br>
+<br>
+
+<div class="container">
+
+<p><h4>{{hoodies.titulo}}</h4></p>
+
+{% if hoodies.imagenPrenda %}
+    <p><img src="{{hoodies.imagenPrenda.url}}" alt=""></p>
+{% endif %}
+<p>Marca: {{hoodies.marca}}</p>
+<p>Descripción: {{hoodies.descripcion}}</p>
+<p>Fecha de publicacion: {{hoodies.fecha_publicacion}}</p>
+<p>Precio: {{hoodies.precio}}</p>
+<p>Telefono de Contacto: {{hoodies.contactoTLF}}</p>
+<p>Email de Contacto: {{hoodies.email_contacto}}</p>
+
+</div>
+<br>
+<div class="container">
+    <h4>Comentarios</h4>
+    <br>
+    <div class="container">
+    {% if not hoodies.comentarios.all %}
+        Aun no tiene comentarios esta publicacion
+    {% else %}
+        {% for comentario in hoodies.comentarios.all %}
+        <p><strong>{{comentario.nombre}}</strong></p>
+        <p>{{comentario.mensaje}}</p>
+        <p><small>{{comentario.fechaComentario}}</small></p>
+        <hr>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url 'comentario' hoodies.pk %}">Agrega un Comentario</a>
+    </div>
+</div>
+<br>
+
+{% endblock %}

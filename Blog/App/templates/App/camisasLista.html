@@ -1,0 +1,41 @@
+{% extends 'App/base.html' %}
+
+{% block contenidoQueCambia %}
+  
+<br>
+<br>
+
+
+
+
+
+<div class="container text-center">
+    <h1>Camisas</h1>
+</div>
+
+<br>
+
+<div class="container text-center">
+    <div class="row">
+            {% for camisas in camisass %}
+            <div class="col-sm-6 align-items-center">
+                <div class="card-body">
+                <img src="{{camisas.imagenPrenda.url}}" class="" width="100px">
+                {{camisas.titulo}}
+                <a href="{% url 'camisas' camisas.id %}"><i class="bi bi-eye"></i></a>
+                {% if user.id == camisas.usuario.id %}
+                <a href="{% url 'camisas_editar' camisas.id %}"><i class="bi bi-pencil-fill"></i></a>
+                <a href="{% url 'camisas_eliminar' camisas.id %}"><i class="bi bi-trash text-danger"></i></a>
+                <br>
+                <br>
+                <br>
+                <br>
+                {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

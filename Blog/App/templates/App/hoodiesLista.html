@@ -1,0 +1,40 @@
+{% extends 'App/base.html' %}
+
+{% block contenidoQueCambia %}
+  
+<br>
+<br>
+
+
+
+
+
+<div class="container text-center">
+    <h1>Hoodies</h1>
+</div>
+
+<br>
+
+<div class="container text-center">
+    <div class="row">
+            {% for hoodies in hoodiess %}
+            <div class="col-sm-6 align-items-center">
+                <div class="card-body">
+                <img src="{{hoodies.imagenPrenda.url}}" class="" width="100px">
+                {{hoodies.titulo}}
+                <a href="{% url 'hoodies' hoodies.id %}"><i class="bi bi-eye"></i></a>
+                {% if user.id == hoodies.usuario.id %}
+                <a href="{% url 'hoodies_editar' hoodies.id %}"><i class="bi bi-pencil-fill"></i></a>
+                <a href="{% url 'hoodies_eliminar' hoodies.id %}"><i class="bi bi-trash text-danger"></i></a>
+                <br>
+                <br>
+                <br>
+                <br>
+                {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
